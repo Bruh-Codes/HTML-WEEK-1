@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Data Display and Registration Form</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			body {
+				font-family: "Roboto", sans-serif;
+				background-color: #eef2f6;
+				color: #333;
+				line-height: 1.6;
+				padding: 15px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				min-height: 100vh;
+				margin: 0;
+			}
+			h1 {
+				font-weight: 700;
+				color: #2c3e50;
+				margin-bottom: 15px;
+				font-size: 1.8em;
+			}
+			.main-container {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 20px; /* Reduced space between table and form */
+				width: 85%; /* Reduced max width for the main content */
+				max-width: 1100px; /* Added a max-width to the container */
+				margin-top: 15px; /* Reduced margin */
+			}
+			.table-container,
+			.form-container {
+				flex: 1;
+				min-width: 280px; /* Slightly smaller min-width */
+				background-color: #ffffff;
+				border-radius: 10px; /* Slightly smaller border-radius */
+				box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08); /* Slightly smaller shadow */
+				padding: 25px; /* Reduced padding */
+			}
+			.form-container {
+				max-width: 400px; /* Further reduced max-width for the form */
+			}
+			.form-title {
+				color: #2980b9;
+				text-align: center;
+				margin-bottom: 25px; /* Reduced margin-bottom */
+				font-size: 2em; /* Slightly smaller font size */
+				font-weight: 700;
+				letter-spacing: 0.8px; /* Slightly reduced letter spacing */
+				text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.08); /* Slightly smaller shadow */
+			}
+			form {
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				gap: 12px; /* Reduced spacing between form groups */
+			}
+			.form-columns {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 15px; /* Gap between columns */
+			}
+			.form-columns .form-group {
+				flex: 1 1 calc(50% - 7.5px); /* Two columns, accounting for gap */
+				min-width: 150px; /* Ensure columns don't get too small */
+			}
+			.form-group {
+				margin-bottom: 0;
+			}
+			label {
+				display: block;
+				margin-bottom: 6px; /* Reduced margin */
+				font-weight: 700;
+				color: #34495e;
+				font-size: 0.95em; /* Slightly smaller font size */
+			}
+			input[type="text"],
+			input[type="email"],
+			input[type="tel"] {
+				width: 100%;
+				padding: 8px 10px; /* Reduced padding to decrease height */
+				border: 1px solid #d0d0d0; /* Slightly lighter border */
+				border-radius: 6px; /* Slightly smaller border-radius */
+				box-sizing: border-box;
+				font-size: 0.95em; /* Slightly smaller font size */
+				transition: border-color 0.2s ease, box-shadow 0.2s ease;
+			}
+			input[type="text"]:focus,
+			input[type="email"]:focus,
+			input[type="tel"]:focus {
+				border-color: #3498db;
+				outline: none;
+				box-shadow: 0 0 8px rgba(52, 152, 219, 0.25); /* Slightly smaller shadow */
+			}
+			.gender-group {
+				display: flex;
+				align-items: center;
+				margin-top: 8px; /* Reduced margin */
+			}
+			.gender-group label {
+				margin-bottom: 0;
+				margin-right: 10px; /* Reduced margin */
+				font-weight: 400;
+				color: #555;
+			}
+			input[type="radio"] {
+				margin-right: 6px; /* Reduced margin */
+				transform: scale(1); /* Reset scale or slightly smaller */
+			}
+			.gender-options {
+				display: flex;
+				gap: 10px; /* Reduced gap */
+			}
+			.gender-options div {
+				display: flex;
+				align-items: center;
+			}
+			.submit-button {
+				background-color: #2ecc71;
+				color: white;
+				padding: 10px 18px; /* Reduced padding */
+				border: none;
+				border-radius: 6px; /* Slightly smaller border-radius */
+				font-size: 1em; /* Slightly smaller font size */
+				font-weight: 700;
+				cursor: pointer;
+				transition: background-color 0.2s ease, transform 0.1s ease;
+				margin-top: 15px;
+				align-self: center;
+			}
+			.submit-button:hover {
+				background-color: #27ae60;
+				transform: translateY(-1px); /* Smaller lift effect */
+			}
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+				background-color: #fff;
+				border-radius: 8px;
+				overflow: hidden;
+			}
+			th,
+			td {
+				border: 1px solid #e0e0e0;
+				padding: 8px 10px; /* Reduced padding */
+				text-align: left;
+				font-size: 0.9em; /* Slightly smaller font size */
+			}
+			th {
+				background-color: #f2f2f2;
+				font-weight: 700;
+				color: #555;
+			}
+			tr:nth-child(even) {
+				background-color: #f9f9f9;
+			}
+			tr:hover {
+				background-color: #f0f0f0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="main-container">
+			<div class="table-container">
+				<h1>User Data Table</h1>
+				<p>Displaying a list of example users.</p>
+
+				<table>
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Name</th>
+							<th>Email</th>
+							<th>Role</th>
+							<th>Status</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>Alice Smith</td>
+							<td>alice.s@example.com</td>
+							<td>Admin</td>
+							<td>Active</td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>Bob Johnson</td>
+							<td>bob.j@example.com</td>
+							<td>Editor</td>
+							<td>Inactive</td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td>Charlie Brown</td>
+							<td>charlie.b@example.com</td>
+							<td>Viewer</td>
+							<td>Active</td>
+						</tr>
+						<tr>
+							<td>4</td>
+							<td>Diana Prince</td>
+							<td>diana.p@example.com</td>
+							<td>Admin</td>
+							<td>Active</td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>Eve Adams</td>
+							<td>eve.a@example.com</td>
+							<td>Viewer</td>
+							<td>Inactive</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="form-container">
+				<h1 class="form-title">User Registration</h1>
+				<form>
+					<div class="form-columns">
+						<div class="form-group">
+							<label for="firstname">First Name:</label>
+							<input
+								type="text"
+								id="firstname"
+								name="firstname"
+								placeholder="Enter your first name"
+							/>
+						</div>
+
+						<div class="form-group">
+							<label for="lastname">Last Name:</label>
+							<input
+								type="text"
+								id="lastname"
+								name="lastname"
+								placeholder="Enter your last name"
+							/>
+						</div>
+
+						<div class="form-group">
+							<label for="email">Email:</label>
+							<input
+								type="email"
+								id="email"
+								name="email"
+								placeholder="Enter your email address"
+							/>
+						</div>
+
+						<div class="form-group">
+							<label for="phone">Phone:</label>
+							<input
+								type="tel"
+								id="phone"
+								name="phone"
+								placeholder="Enter your phone number"
+							/>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<p class="gender-group">Gender:</p>
+						<div class="gender-options">
+							<div>
+								<input type="radio" id="male" name="gender" value="male" />
+								<label for="male">Male</label>
+							</div>
+							<div>
+								<input type="radio" id="female" name="gender" value="female" />
+								<label for="female">Female</label>
+							</div>
+							<div>
+								<input type="radio" id="other" name="gender" value="other" />
+								<label for="other">Other</label>
+							</div>
+						</div>
+					</div>
+
+					<button type="submit" class="submit-button">Register</button>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
