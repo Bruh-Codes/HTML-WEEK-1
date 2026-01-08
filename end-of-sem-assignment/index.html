@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+    <title> Browser extensions manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {}
+        }
+      }
+    </script>
+    <style>
+      .list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .toggle {
+        transition: background-color 0.3s ease;
+      }
+      .toggle-slider {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), scale 0.2s ease;
+        transform: translateX(0);
+      }
+      .toggle:active .toggle-slider {
+        scale: 0.95;
+      }
+      input:checked + .toggle-slider {
+        transform: translateX(24px);
+      }
+      input:checked ~ .toggle {
+        background-color: rgb(17, 24, 39);
+      }
+      .toggle:has(input:checked) {
+        background-color: rgb(17, 24, 39);
+      }
+    </style>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-gray-50 dark:bg-gray-900 min-h-screen m-0 p-0 transition-colors duration-300">
+    <div class="max-w-6xl mx-auto px-4 py-8">
+      <nav class="flex justify-between items-center bg-white rounded-2xl shadow-sm p-4 mb-8 transition-colors duration-300 dark:bg-gray-800 dark:border dark:border-gray-700">
+        <div class="logo">
+          <img src="assets/images/logo.svg" alt="logo" class="h-8">
+        </div>
+        <button class="theme-toggle w-10 h-10 rounded-xl bg-gray-100 flex justify-center items-center hover:bg-gray-200 transition-colors dark:bg-gray-700 dark:hover:bg-gray-600" tabindex="0">
+          <img class="theme-icon w-5 h-5" src="assets/images/icon-moon.svg" alt="light theme">
+        </button>
+      </nav>
+
+      <div class="extension flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-white transition-colors duration-300">Extensions List</h1>
+        <div class="flex gap-2">
+          <button class="px-4 py-2 rounded-full bg-gray-900 text-white font-medium transition-colors extension-button dark:bg-white dark:text-gray-900" data-button="0">All</button>
+          <button data-button="1" class="px-4 py-2 rounded-full bg-white text-gray-600 font-medium border border-gray-200 hover:bg-gray-50 transition-colors extension-button dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-700">Active</button>
+          <button data-button="2" class="px-4 py-2 rounded-full bg-white text-gray-600 font-medium border border-gray-200 hover:bg-gray-50 transition-colors extension-button dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-700">Inactive</button>
+        </div>
+      </div>
+
+      <div class="list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- the dnamic content will be here -->
+      </div>
+    </div>
+
+    <script src="index.js" type="module"></script>
+  </body>
+</html>
